@@ -14,7 +14,7 @@ public class AdminPage {
 	@FindBy(xpath = "//a[@href='todays-orders.php']")
 	private WebElement todaysOrdersLink;
 
-	@FindBy(xpath = "//a[text()=' Create Category ']")
+	@FindBy(xpath = "//a[@href='category.php']")
 	private WebElement createCategoryLink;
 
 	@FindBy(xpath = "//a[text()='Sub Category ']")
@@ -30,6 +30,7 @@ public class AdminPage {
 	private WebElement logoutLink;
 
 	public AdminPage(WebDriver driver) {
+		this.driver=driver;
 		PageFactory.initElements(driver, this);
 
 	}

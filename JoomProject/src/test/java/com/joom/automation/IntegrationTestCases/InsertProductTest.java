@@ -89,9 +89,9 @@ public class InsertProductTest extends BaseClassForUser {
 		WebElement fileInput1 = ipp.getImage1();
 		//fileInput1.click();
 		Thread.sleep(2000);
-		Actions a = new Actions(driver);
-		a.sendKeys(ipp.getImage1(),"./src/test/resources/iphone_image.webp").perform();
-		//fileInput1.sendKeys("‪C:\\Users\\priya\\git\\repository16\\com.joom.automation1\\src\\test\\resources\\TestScriptData\\iphone_image.webp");
+		//Actions a = new Actions(driver);
+		///a.sendKeys(ipp.getImage1(),"./src/test/resources/iphone_image.webp").perform();
+		fileInput1.sendKeys("‪C:\\Users\\priya\\git\\repository16\\com.joom.automation1\\src\\test\\resources\\TestScriptData\\iphone_image.webp");
 
         WebElement fileInput2 = ipp.getImage2();
         
@@ -103,6 +103,9 @@ public class InsertProductTest extends BaseClassForUser {
         // Click the Insert button
        
         insertButton.click();
+        
+        adp.getLogoutIcon().click();
+		adp.getLogoutLink().click();
 
 	}
 

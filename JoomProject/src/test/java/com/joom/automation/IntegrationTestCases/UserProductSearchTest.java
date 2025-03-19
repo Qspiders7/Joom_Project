@@ -16,6 +16,7 @@ import com.joom.automation.baseutility.BaseClassForUser;
 import com.joom.automation.generic.fileutility.ExcelUtilityForAdmin;
 import com.joom.automation.generic.fileutility.JsonForUserUtility;
 import com.joom.automation.objectrepository.HomePage;
+import com.joom.automation.objectrepository.UserLogOutPage;
 import com.joom.automation.objectrepository.UserLoginPage;
 import com.joom.automation.objectrepository.UserShoppingHomePage;
 @Listeners(com.joom.automation.listenerUtility.ListImpClass.class)
@@ -24,6 +25,8 @@ public class UserProductSearchTest extends BaseClassForUser {
 	public void userProductSearchTest() throws EncryptedDocumentException, IOException, InterruptedException, ParseException {
 		js = new JsonForUserUtility();
 		wb = new WebdriverUtility();
+		ulp= new UserLogOutPage(driver);
+		ullp = new UserLoginPage(driver);
 
 		wb.waitForPageToLoad(driver);
 		driver.manage().window().maximize();
@@ -38,10 +41,10 @@ public class UserProductSearchTest extends BaseClassForUser {
 		String PASSWORD = js.readDataFromJson("password");
 		Thread.sleep(3000);
 
-		UserLoginPage ulp = new UserLoginPage(driver);
-		ulp.getEmailtxtfield().sendKeys(USERNAME);
-		ulp.getPasswordtxtfield().sendKeys(PASSWORD);
-		WebElement ele = ulp.getLoginbtn();
+		
+		ullp.getEmailtxtfield().sendKeys(USERNAME);
+		ullp.getPasswordtxtfield().sendKeys(PASSWORD);
+		WebElement ele = ullp.getLoginbtn();
 		// wb.scrollToElement(driver, ele);
 		wb = new WebdriverUtility();
 		wb.scrollByAmountt(driver, ele);
@@ -58,6 +61,9 @@ public class UserProductSearchTest extends BaseClassForUser {
   		sa.assertTrue(driver.getCurrentUrl().contains("Online_Shopping_Application/search-result.php"), "searched product not displayed successfully!");
   		Reporter.log("searched product displayed successfully.",true);
   		sa.assertAll();
+  		
+  		ulp.getLogoutlink().click();
+  		
   		
   		
 

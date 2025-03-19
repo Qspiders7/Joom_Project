@@ -21,16 +21,7 @@ import com.joom.automation.objectrepository.SubCategoryPage;
 public class CreateSubCategoryTest extends BaseClassForUser {
 	@Test(groups="Integration")
 	public void insertSubcategory() throws Throwable {
-		/*WebDriver driver= new ChromeDriver();
-		WebdriverUtility wb= new WebdriverUtility();
-	ExcelUtilityForAdmin	ela = new ExcelUtilityForAdmin();
-	SubCategoryPage	scp = new SubCategoryPage(driver);
-	AdminPage	adp = new AdminPage(driver);
-	driver.get("http://49.249.28.218:8081/AppServer/Online_Shopping_Application/");
-	driver.findElement(By.xpath("//a[@href='admin']")).click();
-	driver.findElement(By.id("inputEmail")).sendKeys("admin");
-	driver.findElement(By.id("inputPassword")).sendKeys("admin");
-	driver.findElement(By.name("submit")).click();*/
+		
 		
 		jad = new JsonForAdminUtility();
 		
@@ -51,7 +42,7 @@ public class CreateSubCategoryTest extends BaseClassForUser {
 		alp = new AdminLoginPage(driver);
 		alp.adminLogin(USERNAME, PASSWORD);
 		
-		ela= new ExcelUtilityForAdmin();
+		elib= new ExcelUtilityForAdmin();
 	
 		scp = new SubCategoryPage(driver);
 		adp = new AdminPage(driver);
@@ -63,11 +54,11 @@ public class CreateSubCategoryTest extends BaseClassForUser {
 		wb.waitForElementPresent(driver,subCategory , 20);
 		WebElement category = scp.getCategoryDropdown();
 		category.click();
-		String categoryList = ela.getDataFromExcel("Sheet1", 1, 0);
+		String categoryList = elib.getDataFromExcel("Sheet1", 1, 0);
 
 		WebElement selectDropdown = scp.getCategoryDropdown();
 		wb.select(selectDropdown, categoryList);
-		String subCategoryList = ela.getDataFromExcel("Sheet1", 1, 2);
+		String subCategoryList = elib.getDataFromExcel("Sheet1", 1, 2);
 		wb.waitForElementPresent(driver,category , 20);
 		scp.getSubCategoryDropdown().sendKeys(subCategoryList);
 		
@@ -87,6 +78,7 @@ public class CreateSubCategoryTest extends BaseClassForUser {
 		sa.assertEquals(text, true);
 		Reporter.log("created sub category", true);
 		
+		adp.getLogoutIcon().click();
 		adp.getLogoutLink().click();
 
 	}

@@ -29,7 +29,7 @@ public class UserHomePage {
 	@FindBy(id="confirmpassword")
 	private WebElement confirmpasswordtxtfld;
 	
-	@FindBy(id="submit")
+	@FindBy(xpath="//button[text()='Sign Up']")
      private WebElement submitBtn;
 
 	
@@ -56,6 +56,16 @@ public class UserHomePage {
 	public WebElement getSubmitBtn() {
 		return submitBtn;
 	}
+	
+
+	 
+	    
+
+	   
+	    	
+
+	
+	
 	
 	
 	

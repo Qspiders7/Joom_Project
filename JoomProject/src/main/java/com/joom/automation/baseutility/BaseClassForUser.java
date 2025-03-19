@@ -57,7 +57,7 @@ public class BaseClassForUser {
 	public UserLoginPage ullp;
 	public SubCategoryPage scp;
 	public AdminPage adp;
-	public ExcelUtilityForAdmin ela;
+
 	public JsonForAdminUtility jad;
 	public AdminLoginPage alp;
 	public HomePage hp;
@@ -77,7 +77,7 @@ public class BaseClassForUser {
 	@BeforeClass(groups= {"Smoke Test","Integration Test","System Test"})
 	public void congfigBC(@Optional("chrome") String Browser) throws IOException, Throwable {
 		Reporter.log("=== Launching Browser", true);
-		//js = new JsonForUserUtility();
+		js = new JsonForUserUtility();
 		//String browser = js.readDataFromJson("browser");
 		String browser=Browser;
 		String URL = js.readDataFromJson("url");

@@ -25,20 +25,22 @@ public class CreateCategoryTest extends BaseClassForUser {
 
 	@Test(groups="System Test")
 	public void createCategory() throws ParseException, IOException, Throwable {
-		adp = new AdminPage(driver);
+		AdminPage adp = new AdminPage(driver);
 		CreateCategoryPage ccp = new CreateCategoryPage(driver);
 		ExcelUtilityForAdmin ela = new ExcelUtilityForAdmin();
 
 		// Fetch category name & description from Excel
+		System.out.println("hai");
 		String category = ela.getDataFromExcel("Sheet1", 1, 0);
+		System.out.println("hai1");
 		String description = ela.getDataFromExcel("Sheet1", 2, 1);
-
+		System.out.println("hai2");
 		// Click on "Create Category" link
 		adp.getCreateCategoryLink().click();
-
+		System.out.println("hai3");
 		// Fill form and create category
 		ccp.createCategory(category, description);
-
+		System.out.println("hai4");
 		// Wait for confirmation message
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement confirmationMsg = wait
@@ -61,5 +63,8 @@ public class CreateCategoryTest extends BaseClassForUser {
 		sa.assertAll();
 
 		System.out.println("Category successfully created and verified.");
+		adp.getLogoutIcon().click();
+		adp.getLogoutLink().click();
+		
 	}
 }

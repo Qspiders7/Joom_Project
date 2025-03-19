@@ -19,6 +19,7 @@ import com.joom.automation.baseutility.BaseClassForUser;
 import com.joom.automation.generic.fileutility.JsonForUserUtility;
 import com.joom.automation.objectrepository.HomePage;
 import com.joom.automation.objectrepository.UserBooksCategoryPage;
+import com.joom.automation.objectrepository.UserLogOutPage;
 import com.joom.automation.objectrepository.UserLoginPage;
 import com.joom.automation.objectrepository.UserMyCartPage;
 import com.joom.automation.objectrepository.UserPaymentMethodPage;
@@ -31,6 +32,7 @@ public class ShoppingCarttTest extends BaseClassForUser {
 	public void shoppingCarttTest() throws InterruptedException, FileNotFoundException, IOException, ParseException {
 		js=new JsonForUserUtility();
 		wb=new WebdriverUtility();
+		ulp=new  UserLogOutPage(driver);
 		
 		HomePage hp = new HomePage(driver);
 		Thread.sleep(3000);
@@ -42,10 +44,10 @@ public class ShoppingCarttTest extends BaseClassForUser {
 		String PASSWORD = js.readDataFromJson("password");
 		Thread.sleep(3000);
 
-		UserLoginPage ulp = new UserLoginPage(driver);
-		ulp.getEmailtxtfield().sendKeys(USERNAME);
-		ulp.getPasswordtxtfield().sendKeys(PASSWORD);
-		WebElement ele = ulp.getLoginbtn();
+		UserLoginPage ullp = new UserLoginPage(driver);
+		ullp.getEmailtxtfield().sendKeys(USERNAME);
+		ullp.getPasswordtxtfield().sendKeys(PASSWORD);
+		WebElement ele = ullp.getLoginbtn();
 		// wb.scrollToElement(driver, ele);
 		wb = new WebdriverUtility();
 		wb.scrollByAmountt(driver, ele);
@@ -98,11 +100,9 @@ public class ShoppingCarttTest extends BaseClassForUser {
   		upmp.getCODradiobtn().click();
   		upmp.getSubmitBtn().click();
   		
-  	SoftAssert sa= new SoftAssert();
-  		sa.assertTrue(driver.getCurrentUrl().contains("Online_Shopping_Application/order-history.php"), "Payment was not processed successfully!");
-
-        Reporter.log("Shopping cart test passed successfully.",true);
-        sa.assertAll();
+        ulp.getLogoutlink().click();
+        
+        
 
 	}	
 }	

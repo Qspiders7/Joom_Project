@@ -52,6 +52,10 @@ public class VerifyTodaysOrderTest extends BaseClassForUser {
 		SoftAssert sa = new SoftAssert();
 		sa.assertEquals(norDisplayed, true);
 		sa.assertEquals(entries, true);
+		
+		adp.getLogoutIcon().click();
+	
+		adp.getLogoutLink().click();
 
 	}
 

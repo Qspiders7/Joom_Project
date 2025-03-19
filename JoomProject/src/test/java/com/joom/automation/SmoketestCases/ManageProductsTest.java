@@ -13,6 +13,7 @@ import com.joom.automation.baseutility.BaseClassForUser;
 import com.joom.automation.generic.fileutility.ExcelUtilityForAdmin;
 import com.joom.automation.generic.fileutility.JsonForAdminUtility;
 import com.joom.automation.objectrepository.AdminLoginPage;
+import com.joom.automation.objectrepository.AdminPage;
 import com.joom.automation.objectrepository.HomePage;
 import com.joom.automation.objectrepository.ManageProductsPage;
 
@@ -22,29 +23,33 @@ public class ManageProductsTest extends BaseClassForUser {
 	public void deleteProducts() throws Throwable {
 		mpp = new ManageProductsPage(driver);
 		jad = new JsonForAdminUtility();
+		hp = new HomePage(driver);
+		elib = new ExcelUtilityForAdmin();
+		wb = new WebdriverUtility();
+		adp=new  AdminPage(driver);
+		
 
 		String USERNAME = jad.readDataFromJson("username");
 		String PASSWORD = jad.readDataFromJson("password");
+		hp.getAdminLoginLink().click();
 
+		System.out.println("hello");
 		alp = new AdminLoginPage(driver);
 		alp.adminLogin(USERNAME, PASSWORD);
 
-		HomePage hp = new HomePage(driver);
-		hp.getAdminLoginLink().click();
-
-		ela = new ExcelUtilityForAdmin();
-		wb = new WebdriverUtility();
-
+	
 		WebElement productLink = mpp.getManageProductsLink();
 		wb.waitForElementPresent(driver, productLink, 20);
 		productLink.click();
 		// String productName = ela.getDataFromExcel("Sheet1", 1, 9);
 		wb.waitForPageToLoad(driver);
 
-		driver.findElement(By.xpath(
-				"//td[text()='Asian Casuals  (White, White)']/following-sibling::td[last()]//i[contains(@class,'icon-remove-sign')]"))
-				.click();
-		wb.switchToAlertAndAccept(driver);
+		
+			driver.findElement(By.xpath("//td[text()='ceramic vase']"))	.click();
+				
+		
+		adp.getLogoutIcon().click();
+		adp.getLogoutLink().click();
 
 	}
 

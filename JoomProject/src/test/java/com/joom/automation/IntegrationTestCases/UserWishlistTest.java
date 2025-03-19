@@ -17,6 +17,7 @@ import com.joom.automation.generic.fileutility.JsonForUserUtility;
 import com.joom.automation.objectrepository.AdminLoginPage;
 import com.joom.automation.objectrepository.HomePage;
 import com.joom.automation.objectrepository.UserBooksCategoryPage;
+import com.joom.automation.objectrepository.UserLogOutPage;
 import com.joom.automation.objectrepository.UserLoginPage;
 import com.joom.automation.objectrepository.UserProductDetailsPage;
 import com.joom.automation.objectrepository.UserShoppingHomePage;
@@ -30,6 +31,8 @@ public void userWishlistTest() throws InterruptedException, FileNotFoundExceptio
 	wb=new WebdriverUtility();
 	ullp=new UserLoginPage(driver);
 	hp=new HomePage(driver);
+	ulp=new UserLogOutPage(driver);
+	ullp = new UserLoginPage(driver);
 	
 	wb.waitForPageToLoad(driver);
 	driver.manage().window().maximize();
@@ -42,10 +45,9 @@ public void userWishlistTest() throws InterruptedException, FileNotFoundExceptio
 	String PASSWORD = js.readDataFromJson("password");
 	Thread.sleep(3000);
 
-	UserLoginPage ulp = new UserLoginPage(driver);
-	ulp.getEmailtxtfield().sendKeys(USERNAME);
-	ulp.getPasswordtxtfield().sendKeys(PASSWORD);
-	WebElement ele = ulp.getLoginbtn();
+	ullp.getEmailtxtfield().sendKeys(USERNAME);
+	ullp.getPasswordtxtfield().sendKeys(PASSWORD);
+	WebElement ele = ullp.getLoginbtn();
 	// wb.scrollToElement(driver, ele);
 	wb = new WebdriverUtility();
 	wb.scrollByAmountt(driver, ele);
@@ -76,6 +78,10 @@ public void userWishlistTest() throws InterruptedException, FileNotFoundExceptio
 
     Reporter.log("mywishlist page has been displayed.",true);
     sa.assertAll();
+    
+   ulp. getLogoutlink() .click() ; 
+    
+  
 
 	
 	

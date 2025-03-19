@@ -11,7 +11,7 @@ import org.json.simple.parser.ParseException;
 public class JsonForUserUtility {
 	public String readDataFromJson(String key) throws FileNotFoundException, IOException, ParseException  {
 		JSONParser parse = new JSONParser();
-		Object obj = parse.parse(new FileReader("C:\\Users\\priya\\git\\repository16\\com.joom.automation1\\src\\test\\resources\\configData\\CommondataForUser.json"));
+		Object obj = parse.parse(new FileReader("C:\\Users\\priya\\git\\JoomProjectFramework\\JoomProject\\src\\test\\resources\\configData\\CommondataForUser.json"));
 		JSONObject map = (JSONObject) obj;
 		String value = (String) map.get(key);
 		return value;

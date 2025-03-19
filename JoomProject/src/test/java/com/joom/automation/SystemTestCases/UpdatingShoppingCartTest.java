@@ -28,14 +28,17 @@ public class UpdatingShoppingCartTest extends  BaseClassForUser{
 	
 	@Test(groups="System Test")
 	public void updatingShoppingCartTest() throws InterruptedException, FileNotFoundException, IOException, ParseException {
-		System.out.println("Execute method");
+		HomePage hp = new HomePage(driver);
+		UserLoginPage ullp = new UserLoginPage(driver);
+		UserMyCartPage umcp=new UserMyCartPage(driver);
+		UserFashionCategoryPage ufcp = new UserFashionCategoryPage (driver);
 		js=new JsonForUserUtility();
 		wb=new WebdriverUtility();
 		//implicit wait
 		wb.waitForPageToLoad(driver);
 		driver.manage().window().maximize();
 		
-		HomePage hp = new HomePage(driver);
+		hp = new HomePage(driver);
 		Thread.sleep(3000);
 		hp.getLoginLink().click();
 
@@ -45,35 +48,39 @@ public class UpdatingShoppingCartTest extends  BaseClassForUser{
 		String PASSWORD = js.readDataFromJson("password");
 		Thread.sleep(3000);
 
-		UserLoginPage ulp = new UserLoginPage(driver);
-		ulp.getEmailtxtfield().sendKeys(USERNAME);
-		ulp.getPasswordtxtfield().sendKeys(PASSWORD);
-		WebElement ele = ulp.getLoginbtn();
+         ullp = new UserLoginPage(driver);
+		ullp.getEmailtxtfield().sendKeys(USERNAME);
+		ullp.getPasswordtxtfield().sendKeys(PASSWORD);
+		WebElement ele = ullp.getLoginbtn();
 		// wb.scrollToElement(driver, ele);
 		wb = new WebdriverUtility();
 		wb.scrollByAmountt(driver, ele);
 		ele.click();
 		
 		//click on fashion
+		System.out.println("hai");
 		 ushp= new UserShoppingHomePage(driver);
+		 System.out.println("hai1");
 		ushp.getFashionbtn().click();
 		
 		//click on saree product
 		ufcp=new UserFashionCategoryPage(driver);
 		Thread.sleep(2000);
-		//it is not scrolling
-		WebElement shoe= ufcp.getShoebtn();
+	
+		WebElement saree= ufcp.getSareeBtn();
 		wb=new WebdriverUtility();
 		//wb.scrollToElement(driver, saree);
 		//saree.click();
 		Thread.sleep(2000);
 		//wb.scrollByAmountt(driver, saree);
-		wb.scrollToElements(driver,shoe);
-		shoe.click();
+		System.out.println("hai3");
+		wb.scrollToElements(driver,saree);
+		System.out.println("hai4");
+		saree.click();
 		Thread.sleep(2000);
 		//product has been added to the cart popup
 		//wb.switchtoAlertAndAccept(driver);
-		wb.scrollToElements(driver, shoe);
+		wb.scrollToElements(driver, saree);
 		ufcp.getAddtoCartBtn().click();
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		try {
@@ -102,7 +109,7 @@ public class UpdatingShoppingCartTest extends  BaseClassForUser{
 
         Reporter.log("Updating the cart test passed successfully.",true);
 
-		
+		ulp.getLogoutlink().click();
 		
 		
 		
